@@ -3,7 +3,7 @@
 #include <dos.h>
 #include <Windows.h>
 #include <time.h>
-
+#include <fstream>
 using namespace std;
 
 
@@ -18,7 +18,7 @@ void gotoxy(int x, int y) {
 	SetConsoleCursorPosition(console, CursorPosition);
 }
 
-void generatePassword() {
+char generatePassword() {
 	int length;
 	int complexity;
 
@@ -91,7 +91,13 @@ void generatePassword() {
 		gotoxy(11, 8); cout << pass;
 	
 
+		for (int i = 0; i <= 21; i++) {
+			return pass[i];
+		}
+		
+
 }
+
 
 int main() {
 	do {
@@ -99,8 +105,42 @@ int main() {
 		cout << "=======================================" << endl;
 		cout << "             PASSWORD MANAGER            " << endl;
 		cout << "=======================================" << endl;
+		cout << endl;
+		cout << "1 generate Password \t 2 write Data " <<endl;
+		
+		int auswahl = 0;
+		cin >> auswahl;
+		switch (auswahl) {
+		case 1:
+			system("cls");
+			generatePassword();
+			_getch();
+			break;
+		case 2:
+			system("cls");
+			std::ofstream outfile("test.txt");
+			char name[100];
+			char username[100];
+			
+			cout << "Name of Login"; cin >> name;
+			cout << "Username"; cin >> username;
+			generatePassword();
+			char  pass[21];
 
-		generatePassword();
+			for (int i = 0; i < 21; i++) {
+				outfile << name << endl << username << endl << pass[i];
+			}
+			
+			
+			
+			outfile.close();
+			_getch();
+			break;
+		}
+		
+
+		
 
 	} while (true);
+	return 0;
 }
