@@ -36,11 +36,39 @@ void generatePassword(int complexity, char* password)
 
 	case 2:	realLength = 14;		// avarage - ohne Sonderzeichen
 
+		for (i = 0; i < 14; i++)
+		{
+			if (rand() % 3 == 1) {
+				password[i] = 97 + rand() % 26;
+			}
+			else if (rand() % 3 == 2) {
+				password[i] = 65 + rand() % 26;
+			}
+			else {
+				password[i] = 48 + rand() % 10;
+			}
+		}
+		
+		
 		break;
 
 	case 3:	realLength = 20;		// strong - mit allem
 
-
+		for (i = 0; i < 20; i++) {
+			if (rand() % 4 == 1) {
+				password[i] = 97 + rand() % 26;
+			}
+			else if (rand() % 4 == 2) {
+				password[i] = 65 + rand() % 26;
+			}
+			else if (rand() % 4 == 3) {
+				password[i] = 33 + rand() % 15;
+			}
+			else {
+				password[i] = 48 + rand() % 10;
+			}
+		}
+		
 		break;
 
 	default: password[0] = 0;
@@ -74,9 +102,7 @@ int main()
 			cout << "Wo hast du dich registriert? \t"; cin >> network;
 			cout << "gebe deinen nutzernamen ein \t"; cin >> username;
 			cout << "wie komplex soll das Passwort sein? \t"; cin >> complexity;
-			switch (complexity)
-			{
-			case 1:
+			if (complexity == 1){
 				generatePassword(1, test);
 				strcpy_s(test, _countof(test), test);
 
@@ -88,7 +114,32 @@ int main()
 
 				cout << "\n\n";
 				system("pause");
-				break;
+			}
+			else if (complexity == 2) {
+				generatePassword(2, test);
+				strcpy_s(test, _countof(test), test);
+
+
+				fstream sw;
+				sw.open("PwDatei.txt", ios::app);
+				sw << network << "\n" << username << "\n" << test << "\n" "\n" "--------------------------------------------------------" << "\n";
+				sw.close();
+
+				cout << "\n\n";
+				system("pause");
+				}
+			else if (complexity == 3) {
+				generatePassword(3, test);
+				strcpy_s(test, _countof(test), test);
+
+
+				fstream sw;
+				sw.open("PwDatei.txt", ios::app);
+				sw << network << "\n" << username << "\n" << test << "\n" "\n" "--------------------------------------------------------" << "\n";
+				sw.close();
+
+				cout << "\n\n";
+				system("pause");
 			}
 		case 2:
 			system("type PwDatei.txt");
