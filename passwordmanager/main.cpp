@@ -79,6 +79,64 @@ void generatePassword(int complexity, char* password)
 	// Test: cout << password << "\n\n"; _getch();
 }
 
+
+
+void checkPassord(char* password) {
+
+	int length = strlen(password); //länge des char strings
+	//cout << length;
+
+	int bonusCombo = 0;
+
+	int numSym = 0; //Anzahl der Symbole
+	int numUp = 0; //Anzhal der Großbuchstaben
+	int numNumbers = 0; //Anzahl der Nummern
+	int numLower = 0; //Anzahl der Kleinbuchstaben
+
+	for (int i = 0; i < strlen(password);i++) {
+		if (password[i] >= 48 && password[i] <= 57) { //0 -9
+			numNumbers++;
+		}
+		if (password[i] >= 97 && password[i] <= 125) { //a-z
+			numLower++;
+		}
+		if (password[i] >= 65 && password[i] <= 90) { //A-Z
+			numUp++;
+		}
+		if (password[i] >= 33 && password[i] <= 47) { //symbols
+			numSym++;
+		}
+	}
+
+	//cout << numNumbers;
+
+
+	if (numUp > 0 && numNumbers > 0 && numSym > 0) {
+		bonusCombo = 25; //alle 3 Kriterien sind erfüllt
+	}
+
+
+	else if (numUp > 0 && numNumbers > 0 || numSym > 0 && numUp > 0) {
+		bonusCombo = 15; // zwei Kriterien sind erfüllt
+	}
+
+
+	int score = bonusCombo + strlen(password);
+
+	if (score >= 30) {
+		cout << "strong password";
+	}
+	else if (score > 20 && score < 30) {
+		cout << "medium password";
+	}
+	else if (score <= 20) {
+		cout << "weak password";
+	}
+	
+
+
+}
+
 int main()
 {
 	char test[30];
@@ -87,14 +145,16 @@ int main()
 	char network[30];
 	char username[30];
 
-	cout << "======================================";
-	cout << "              PASSWORD MANAGER             ";
-	cout << "======================================";
+	while (wtdo != 3) {
 
-
-	cout << " neue Daten schreiben (1) | passwoerter anzeigen (2)"; cin >> wtdo;
+	cout << "======================================";
+	cout << "              PASSWORD MANAGER        ";
+	cout << "======================================";
 
 	
+		cout << " neue Daten schreiben (1) | passwoerter anzeigen (2) | Programm beenden (3) | Passwort Strength Checker (4)"; cin >> wtdo;
+
+
 
 		switch (wtdo)
 		{
@@ -102,7 +162,7 @@ int main()
 			cout << "Wo hast du dich registriert? \t"; cin >> network;
 			cout << "gebe deinen nutzernamen ein \t"; cin >> username;
 			cout << "wie komplex soll das Passwort sein? \t"; cin >> complexity;
-			if (complexity == 1){
+			if (complexity == 1) {
 				generatePassword(1, test);
 				strcpy_s(test, _countof(test), test);
 
@@ -127,7 +187,7 @@ int main()
 
 				cout << "\n\n";
 				system("pause");
-				}
+			}
 			else if (complexity == 3) {
 				generatePassword(3, test);
 				strcpy_s(test, _countof(test), test);
@@ -144,8 +204,19 @@ int main()
 		case 2:
 			system("type PwDatei.txt");
 			break;
+
+		case 4:
+			char password[30];
+			cin >> password;
+			checkPassord(password);
+			break;
+		
 		}
 
+	}
+
+
+	
 	
 
 	
