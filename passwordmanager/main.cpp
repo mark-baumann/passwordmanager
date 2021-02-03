@@ -2,6 +2,8 @@
 #include <fstream>
 #include <time.h>
 #include <conio.h>
+#include <string>
+#include <vector>
 using namespace std;
 
 void generatePassword(int, char*);
@@ -137,6 +139,27 @@ void checkPassord(char* password) {
 
 }
 
+
+void exportData() {
+	
+	string str;
+	vector<string> file_contents;
+
+	fstream file;
+	file.open("PwDatei.txt", ios::in);
+
+	while (getline(file, str))
+	{
+		file_contents.push_back(str);
+	}
+
+	for (int i = 0; i < file_contents.size(); i++) {
+		cout << file_contents[i];
+	}
+	
+
+}
+
 int main()
 {
 	char test[30];
@@ -147,12 +170,12 @@ int main()
 
 	while (wtdo != 3) {
 
-	cout << "======================================";
-	cout << "              PASSWORD MANAGER        ";
-	cout << "======================================";
+		cout << "======================================";
+		cout << "              PASSWORD MANAGER        ";
+		cout << "======================================";
 
-	
-		cout << " neue Daten schreiben (1) | passwoerter anzeigen (2) | Programm beenden (3) | Passwort Strength Checker (4)"; cin >> wtdo;
+
+		cout << " neue Daten schreiben (1) | passwoerter anzeigen (2) | Programm beenden (3) | Passwort Strength Checker (4) | Export Data as HTML, JSON(5)"; cin >> wtdo;
 
 
 
@@ -210,11 +233,16 @@ int main()
 			cin >> password;
 			checkPassord(password);
 			break;
-		
+
+		case 5:
+
+			exportData();
+
+
+
+
 		}
-
 	}
-
 
 	
 	
