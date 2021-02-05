@@ -148,15 +148,64 @@ void exportData() {
 	fstream file;
 	file.open("PwDatei.txt", ios::in);
 
+	//schreibe die Datei in das Array
 	while (getline(file, str))
 	{
 		file_contents.push_back(str);
 	}
 
-	for (int i = 0; i < file_contents.size(); i++) {
-		cout << file_contents[i];
-	}
+
+	//ausgeben der Datei als Vector
 	
+	
+
+
+
+	fstream Datei("out.txt", ios::out);
+
+	
+
+		for (int i = 0; i < file_contents.size(); i++) {
+
+
+			
+				if (i % 3 == 0) {
+					Datei << "{";
+				}
+			
+			
+				
+
+
+
+				if (i % 3 == 0) {
+					Datei << " \""<< "network\": " <<"\"" <<file_contents[i] <<"\"" <<", ";
+				}
+				if (i % 3 == 1) {
+					Datei << " \"" << "username\": " << "\"" << file_contents[i] << "\"" << ", ";
+				}
+				if (i % 3 == 2) {
+					Datei << " \"" << "password\": " << "\""  <<  file_contents[i] << "\"";
+
+				}
+
+
+				if (i % 3 == 2) {
+					Datei << "}," <<"\n";
+			}
+			}
+			
+
+
+
+		
+
+	
+	
+		
+	
+
+
 
 }
 
@@ -192,7 +241,7 @@ int main()
 
 				fstream sw;
 				sw.open("PwDatei.txt", ios::app);
-				sw << network << "\n" << username << "\n" << test << "\n" "\n" "--------------------------------------------------------" << "\n";
+				sw << network << "\n" << username << "\n" << test << "\n";
 				sw.close();
 
 				cout << "\n\n";
@@ -205,7 +254,7 @@ int main()
 
 				fstream sw;
 				sw.open("PwDatei.txt", ios::app);
-				sw << network << "\n" << username << "\n" << test << "\n" "\n" "--------------------------------------------------------" << "\n";
+				sw << network << "\n" << username << "\n" << test << "\n";
 				sw.close();
 
 				cout << "\n\n";
@@ -218,7 +267,7 @@ int main()
 
 				fstream sw;
 				sw.open("PwDatei.txt", ios::app);
-				sw << network << "\n" << username << "\n" << test << "\n" "\n" "--------------------------------------------------------" << "\n";
+				sw << network << "\n" << username << "\n" << test << "\n";
 				sw.close();
 
 				cout << "\n\n";
