@@ -7,4 +7,4 @@
  - [] Ability to Take your own Password 
  - [] User can set the Output Path 
  - [] GUI
- - [] Export Data as? (JSON, HTML)
+ - [X] Export Data as? (JSON, HTML)
