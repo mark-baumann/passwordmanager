@@ -4,7 +4,7 @@
   ### TODO
 
   - [X] Passwort Strength Checking
- - [] Ability to Take your own Password 
- - [] User can set the Output Path 
- - [] GUI
+ - [ ] Ability to Take your own Password 
+ - [ ] User can set the Output Path 
+ - [ ] GUI
  - [X] Export Data as? (JSON, HTML)
